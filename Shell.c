@@ -6,7 +6,7 @@
 /*   By: lmbangel <lmbangel@student.wethinkcode.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 14:13:06 by lmbangel          #+#    #+#             */
-/*   Updated: 2020/06/01 06:57:47 by lmbangel         ###   ########.fr       */
+/*   Updated: 2020/06/01 18:13:53 by lmbangel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void    miniShellHeader(void)
 	ft_putstr("\033[31m-----------------------\033[0m\n");
 }
 
-void    prompt()
+void    prompt(void)
 {
     ft_putstr("\033[33mlmbangel@WTC_.local zsh>\033[0m ");
 }
@@ -49,7 +49,6 @@ char    *ft_ignoreCase(char *string)
         k++;
     }
     string_out2[k] = '\0';
-    // free(string_out);
     return (string_out2);
 }
 
@@ -119,7 +118,7 @@ void    chooseCommand2Exec(char **command, char **env, char **enviro)
         {
             if (ft_strcmp(ft_strndup(ft_ignoreCase(command[0]), 4), "/bin") == 0 ||
             ft_strcmp(ft_strndup(ft_ignoreCase(command[0]), 4), "/usr") == 0)
-                execv(command[0], enviro);
+                execvp(command[0], command);
             else
             {
                 ft_putstr("zsh: command not found: ");

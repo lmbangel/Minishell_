@@ -6,7 +6,7 @@
 /*   By: lmbangel <lmbangel@student.wethinkcode.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/12 22:22:49 by lmbangel          #+#    #+#             */
-/*   Updated: 2020/06/01 07:06:17 by lmbangel         ###   ########.fr       */
+/*   Updated: 2020/06/01 18:42:41 by lmbangel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@ int     main(int ac, char **av, char **env)
     pid_t   parent_pid;
     extern  char **environ;
     
+    line_input = NULL;
+    command = NULL;
     miniShellHeader();
     while (1)
     {
         prompt();
         parent_pid  = getpid();
-        //If line not empty
         if(get_next_line(0, &line_input) >= 0)
         {
             child_pid = fork();
@@ -41,7 +42,11 @@ int     main(int ac, char **av, char **env)
             }
             else
                 waitpid(child_pid, &stat_loc, WUNTRACED);
+            free(command);
+            command = NULL;
         }
+        free(line_input);
+        line_input = NULL;
     }
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lmbangel <lmbangel@student.wethinkcode.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 19:14:02 by lmbangel          #+#    #+#             */
-/*   Updated: 2020/06/01 05:01:14 by lmbangel         ###   ########.fr       */
+/*   Updated: 2020/06/01 18:31:24 by lmbangel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void    echoCommandFunction(char **command, char **env)
     while (command[++i])
     {
         if (command[i][0] == '$')
-            echoEnvironmentVariable(command[i], g_env);
+            echoEnvironmentVariable(command[i], env);
         else
             quotesAndEscape(command[i]);
     }

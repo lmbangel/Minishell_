@@ -6,7 +6,7 @@
 /*   By: lmbangel <lmbangel@student.wethinkcode.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 23:17:36 by lmbangel          #+#    #+#             */
-/*   Updated: 2020/06/01 05:55:20 by lmbangel         ###   ########.fr       */
+/*   Updated: 2020/06/01 19:14:24 by lmbangel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ char	**adds_new_env_line(char **env, char *new_line)
 	char **new;
 	int i;
 
+    new = NULL;
 	new = (char **)malloc(sizeof(char *) * ((envv_len(g_env)) + 2));
 	i = 0;
 	while (g_env[i])
@@ -70,8 +71,7 @@ char	**adds_new_env_line(char **env, char *new_line)
 		i++;
 	}
 	new[i] = new_line;
-    free(g_env);
     resetGlobalVar(new);
-    ft_freestrarr(new);
+    free(new);
 	return (NULL);
 }
